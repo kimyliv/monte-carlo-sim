@@ -6,7 +6,7 @@ gridsize and calculates the binder cumulant and magnetic susceptibility for vari
 The latter program together with the file Postprocessing_criticalexponents.m is used to find the 
 critical temperature and critical exponents for the XY model.
 
-The data found in the respiratory can be viszualied with the Postprocessing files. The data was
+The data found in the respiratory can be visualised with the Postprocessing files. The data was
 used to create the graphs for the Monte Carlo conference poster found in the Conference_poster 
 folder.
 
