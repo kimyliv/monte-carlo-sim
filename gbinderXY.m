@@ -11,11 +11,11 @@ close all;
 tic
 
 trials = 5e7; % Total number of iterations (>2e7)
-antalpunkter = 25; % Number of datapoints + 1 for observable
+NumberofDatapoints = 25; % Number of datapoints + 1 for observable
 
 Tmin = 0.5; % Min temp
 Tmax = 1.6; % Max temp
-Tstep = (Tmax-Tmin)/antalpunkter; % Temperature stepsize
+Tstep = (Tmax-Tmin)/NumberofDatapoints; % Temperature stepsize
 Samplerate = 2e2; % Sample rate when in equilibrium
 StartSample = 5e4; % Number of iterations until equlibrium 
 
