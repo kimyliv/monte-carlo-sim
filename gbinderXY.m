@@ -10,7 +10,7 @@ close all;
 
 tic
 
-trials = 3e7; % Total number of iterations (>2e7)
+trials = 5e7; % Total number of iterations (>2e7)
 antalpunkter = 25; % Number of datapoints + 1 for observable
 
 Tmin = 0.5; % Min temp
@@ -71,7 +71,7 @@ for N = 12:4:24 % Size of different gridsizes
             
             if c > StartSample && corr > Samplerate
     
-                CollectM = CollectM + abs(sum(exp(1i * gridspins(:))));
+                CollectM = CollectM + magneticXY(gridspins,N);
                 Averageindex = Averageindex + 1;
            
                 if corr > Samplerate

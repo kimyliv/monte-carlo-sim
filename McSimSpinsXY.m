@@ -9,8 +9,8 @@ close all;
 
 tic
 
-L = 16; % grid size
-trials = 2e7; % Total number of iterations
+L = 24; % grid size
+trials = 1e8; % Total number of iterations
 NumberofDatapoints = 20; % Number of datapoints + 1 for observables
 
 Tmin = 0.3; % Min temp
@@ -27,18 +27,23 @@ CollectM = 0;
 Averageindex = 0;
 counter1 = 1;
 
+gbinder = zeros(1,NumberofDatapoints+1);
+tempvec = zeros(1,NumberofDatapoints+1);
+energmean = zeros(1,NumberofDatapoints+1);
+magmean = zeros(1,NumberofDatapoints+1);
+magsuspct = zeros(1,NumberofDatapoints+1);
+heatcap = zeros(1,NumberofDatapoints+1);
+
 for T = Tmin:Tstep:Tmax
 
     counter2 = 1;
     counter = 0; % Needed for while-loop
     gridspins = initialcondXY(L); % Creates initialcondition
-    control = gridspins;
     Em = 0;
     Em2 = 0;
     Mag = 0;
     Mag2 = 0;
     Mag4 = 0;
-    
     En = 0;
     corr = 0;
     
@@ -69,7 +74,7 @@ for T = Tmin:Tstep:Tmax
         if counter > StartSample && corr > Samplerate
 
             CollectE = CollectE + En;
-            CollectM = CollectM + abs(sum(exp(1i * gridspins(:))));
+            CollectM = CollectM + magneticXY(gridspins,L);
             Averageindex = Averageindex + 1;
        
             if corr > Samplerate
@@ -96,11 +101,11 @@ for T = Tmin:Tstep:Tmax
         counter = counter + 1;
 
     end
-if counter1 == 1
+if counter1 == 3
     control2 = gridspins;
 end
 
-if counter1 == 2
+if counter1 == 5
     control3 = gridspins;
 
 end
@@ -152,12 +157,12 @@ U = sin(control2);
 V = cos(control2);
 figure(6)
 q = quiver(X,Y,U,V);
-title(['Temperature T = ', num2str(tempvec(1)), ' '])
+title(['Temperature T = ', num2str(tempvec(3)), ' '])
 
 U = sin(control3);
 V = cos(control3);
 figure(7)
 k = quiver(X,Y,U,V);
-title(['Temperature T = ', num2str(tempvec(2)),' '])
+title(['Temperature T = ', num2str(tempvec(5)),' '])
 
 toc
