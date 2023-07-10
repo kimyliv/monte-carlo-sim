@@ -17,7 +17,7 @@ Tmin = 0.3; % Min temp
 Tmax = 1.6; % Max temp
 Tstep = (Tmax-Tmin)/NumberofDatapoints; % Temperature step
 Samplerate = 2e2; % Sample rate when in equilibrium
-StartSample = 5e4; % Number of iterations until equlibrium 
+StartSample = 5e4; % Number of iterations until equilibrium 
 
 J = 1; % Ferromagnetic or antiferromagnetic +1 or -1
 n = 1;
