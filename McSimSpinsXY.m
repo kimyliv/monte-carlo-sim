@@ -9,18 +9,17 @@ close all;
 
 tic
 
-L = 24; % grid size
-trials = 1e8; % Total number of iterations
-NumberofDatapoints = 20; % Number of datapoints + 1 for observables
+L = 48; % grid size
+trials = 2e8; % Total number of iterations
+NumberofDatapoints = 4; % Number of datapoints + 1 for observables
 
-Tmin = 0.3; % Min temp
+Tmin = 0.5; % Min temp
 Tmax = 1.6; % Max temp
 Tstep = (Tmax-Tmin)/NumberofDatapoints; % Temperature step
 Samplerate = 2e2; % Sample rate when in equilibrium
 StartSample = 5e4; % Number of iterations until equilibrium 
 
 J = 1; % Ferromagnetic or antiferromagnetic +1 or -1
-n = 1;
 CollectE = 0;
 CollectM = 0;
 
@@ -101,12 +100,20 @@ for T = Tmin:Tstep:Tmax
         counter = counter + 1;
 
     end
-if counter1 == 3
+if counter1 == 2
     control2 = gridspins;
 end
 
-if counter1 == 5
+if counter1 == 3
     control3 = gridspins;
+
+end
+if counter1 == 4
+    control4 = gridspins;
+
+end
+if counter1 == 5
+    control5 = gridspins;
 
 end
 
@@ -157,12 +164,24 @@ U = sin(control2);
 V = cos(control2);
 figure(6)
 q = quiver(X,Y,U,V);
-title(['Temperature T = ', num2str(tempvec(3)), ' '])
+title(['Temperature T = ', num2str(tempvec(2)), ' '])
 
 U = sin(control3);
 V = cos(control3);
 figure(7)
-k = quiver(X,Y,U,V);
+k1 = quiver(X,Y,U,V);
+title(['Temperature T = ', num2str(tempvec(3)),' '])
+
+U = sin(control4);
+V = cos(control4);
+figure(8)
+k2 = quiver(X,Y,U,V);
+title(['Temperature T = ', num2str(tempvec(4)),' '])
+
+U = sin(control5);
+V = cos(control5);
+figure(9)
+k3 = quiver(X,Y,U,V);
 title(['Temperature T = ', num2str(tempvec(5)),' '])
 
 toc
