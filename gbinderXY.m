@@ -20,7 +20,6 @@ Samplerate = 2e2; % Sample rate when in equilibrium
 StartSample = 5e4; % Number of iterations until equlibrium 
 
 J = 1; % Ferromagnetic or Antiferromagnetic +1 or -1
-n = 1;
 CollectM = 0;
 
 Averageindex = 0;
@@ -63,7 +62,6 @@ for N = 12:4:24 % Size of different gridsizes
         
             if Energy <= 0 || rand(1) < p % if energy less than or equal to zero - flip spin - or test with boltzmann
     
-                m1 = cos(gridspins(i,j));
                 gridspins(i,j) = theta; % flip spin
                 En = En + 2*Energy; % Calculates the new total energy after spin flip
     
