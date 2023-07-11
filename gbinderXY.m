@@ -33,7 +33,6 @@ for N = 12:4:24 % Size of different gridsizes
         c2 = 1;
         c = 0; % Counter for while-loop
         gridspins = initialcondXY(N); % Creates initialcondition
-        control = gridspins;
  
         Mag2 = 0;
         Mag4 = 0;
