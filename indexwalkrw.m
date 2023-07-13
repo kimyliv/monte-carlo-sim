@@ -1,7 +1,23 @@
 function [i, j] = indexwalkrw(i,j,N)
 
-i = i + sign(randi([-N,N]));
-j = j + sign(randi([-N,N]));
+direction = randi(4);
+switch(direction)
+    case 1 % up
+
+        j = j+1;
+
+    case 2 % down
+
+        j = j-1;
+
+    case 3 % right
+
+        i = i+1;
+
+    case 4 % left
+        
+        i = i-1;
+end
 
 if i > N
 
