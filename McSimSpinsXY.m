@@ -9,22 +9,22 @@ close all;
 
 tic
 
-L = 48; % grid size
+L = 24; % grid size
 trials = 2e8; % Total number of iterations
-NumberofDatapoints = 4; % Number of datapoints + 1 for observables
+NumberofDatapoints = 19; % Number of datapoints + 1 for observables
 
 Tmin = 0.5; % Min temp
-Tmax = 1.6; % Max temp
+Tmax = 2.2; % Max temp
 Tstep = (Tmax-Tmin)/NumberofDatapoints; % Temperature step
-Samplerate = 2e2; % Sample rate when in equilibrium
-StartSample = 5e4; % Number of iterations until equilibrium 
+Samplerate = 50; % Sample rate when in equilibrium
+StartSample = 2e6; % Number of iterations until equilibrium 
 
 J = 1; % Ferromagnetic or antiferromagnetic +1 or -1
 CollectE = 0;
 CollectM = 0;
 
 Averageindex = 0;
-counter1 = 1;
+counter1 = 0;
 
 gbinder = zeros(1,NumberofDatapoints+1);
 tempvec = zeros(1,NumberofDatapoints+1);
@@ -100,22 +100,9 @@ for T = Tmin:Tstep:Tmax
         counter = counter + 1;
 
     end
-if counter1 == 2
-    control2 = gridspins;
-end
+counter1 = counter1 + 1;
+disp(['Temperature: ', num2str(T)]);
 
-if counter1 == 3
-    control3 = gridspins;
-
-end
-if counter1 == 4
-    control4 = gridspins;
-
-end
-if counter1 == 5
-    control5 = gridspins;
-
-end
 
 Mag2mean = Mag2/(counter2-1);
 Mag4mean = Mag4/(counter2-1);
@@ -126,7 +113,6 @@ magmean(counter1) = abs(Mag/(counter2-1));
 magsuspct(counter1) = (1/T)*(L^2)*(Mag2mean - (Mag/(counter2-1))^2);
 heatcap(counter1) = ((1/(L*T))^2)*((Em2/(counter2-1) - ((Em/(counter2-1))^2)));
 
-counter1 = counter1 + 1;
 
 end
 
@@ -151,37 +137,12 @@ plot(tempvec,gbinder,'-*');
 xlabel('Temperature (T)')
 ylabel('Binder Cummulant')
 
-% Save data
+Save data
 
 header = {'Temp ', 'Energy', 'Magnetism','Heatcap','MagneticSusp','Gbinder', 'size'};
 Data = [header; num2cell(tempvec') num2cell(energmean') num2cell(magmean') num2cell(heatcap') num2cell(magsuspct') num2cell(gbinder') num2cell(L*ones(size(gbinder')))];
 timestamp = datestr(now, 'yyyy-mm-dd_HH-MM-SS');
 filename = sprintf('data_%s.mat', timestamp);
 save(filename, 'Data');
-
-[X,Y] = meshgrid(1:L,1:L);
-U = sin(control2);
-V = cos(control2);
-figure(6)
-q = quiver(X,Y,U,V);
-title(['Temperature T = ', num2str(tempvec(2)), ' '])
-
-U = sin(control3);
-V = cos(control3);
-figure(7)
-k1 = quiver(X,Y,U,V);
-title(['Temperature T = ', num2str(tempvec(3)),' '])
-
-U = sin(control4);
-V = cos(control4);
-figure(8)
-k2 = quiver(X,Y,U,V);
-title(['Temperature T = ', num2str(tempvec(4)),' '])
-
-U = sin(control5);
-V = cos(control5);
-figure(9)
-k3 = quiver(X,Y,U,V);
-title(['Temperature T = ', num2str(tempvec(5)),' '])
 
 toc
