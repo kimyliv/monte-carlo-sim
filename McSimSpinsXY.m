@@ -16,7 +16,7 @@ NumberofDatapoints = 19; % Number of datapoints + 1 for observables
 Tmin = 0.5; % Min temp
 Tmax = 2.2; % Max temp
 Tstep = (Tmax-Tmin)/NumberofDatapoints; % Temperature step
-Samplerate = 50; % Sample rate when in equilibrium
+Samplerate = L*L; % Sample rate when in equilibrium - one Monte Carlo step
 StartSample = 2e6; % Number of iterations until equilibrium 
 
 J = 1; % Ferromagnetic or antiferromagnetic +1 or -1

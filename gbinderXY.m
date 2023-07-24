@@ -16,7 +16,7 @@ NumberofDatapoints = 25; % Number of datapoints + 1 for observable
 Tmin = 0.5; % Min temp
 Tmax = 1.6; % Max temp
 Tstep = (Tmax-Tmin)/NumberofDatapoints; % Temperature stepsize
-Samplerate = 2e2; % Sample rate when in equilibrium
+Samplerate = 2e2; % Sample rate when in equilibrium - Montecarlo step
 StartSample = 5e4; % Number of iterations until equlibrium 
 
 J = 1; % Ferromagnetic or Antiferromagnetic +1 or -1
@@ -27,7 +27,7 @@ Averageindex = 0;
 c1 = 1;
 c5 = 1;
 for N = 12:4:24 % Size of different gridsizes
-
+Samplerate = N*N;
     for T = Tmin:Tstep:Tmax
     
         c2 = 1;
